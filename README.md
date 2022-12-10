@@ -19,6 +19,11 @@ Location of webpage:
 
 You can find most information about *Tiny Music Player* just below.
 
+## Notices
+
+The app will not be able to function properly without notification permissions being granted.
+For Android 13+, due to new notification restrictions, the app will bring you to the settings page if the permission is not granted.
+
 ## Features
 
 - It's free
