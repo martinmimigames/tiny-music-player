@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:a="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  package="com.martinmimigames.tinymusicplayer"
+  a:versionCode="1"
+  a:versionName="1.0">
+
+  <uses-permission a:name="android.permission.POST_NOTIFICATIONS" />
+  <uses-permission a:name="android.permission.FOREGROUND_SERVICE" />
+
+  <application
+    a:icon="@drawable/ic_launcher"
+    a:label="Tiny Music Player"
+    a:resizeableActivity="true"
+    a:restoreAnyVersion="true"
+    tools:targetApi="n">
+
+    <receiver
+      a:name=".SessionBroadcastControl"
+      a:exported="true">
+      <intent-filter>
+        <action a:name="android.intent.action.MEDIA_BUTTON" />
+      </intent-filter>
+    </receiver>
+
+    <service
+      a:name=".Service"
+      a:exported="false" />
+
+    <activity
+      a:name=".ServiceControl"
+      a:exported="true"
+      a:excludeFromRecents="true">
+      <intent-filter>
+        <action a:name="android.intent.action.MAIN" />
+        <category a:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+
+      <intent-filter tools:ignore="AppLinkUrlError">
+        <action a:name="android.intent.action.VIEW" />
+        <action a:name="android.intent.action.SEND" />
+
+        <category a:name="android.intent.category.DEFAULT" />
+
+        <data a:mimeType="audio/*" />
+        <data a:mimeType="video/*" />
+      </intent-filter>
+    </activity>
+  </application>
+</manifest>

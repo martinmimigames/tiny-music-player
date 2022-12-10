@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:a="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  a:id="@+id/layout"
+  a:layout_width="match_parent"
+  a:layout_height="match_parent"
+  a:orientation="horizontal"
+  a:theme="@android:style/Theme">
+
+  <ImageView
+    a:layout_width="wrap_content"
+    a:layout_height="match_parent"
+    a:padding="10dp"
+    a:src="@drawable/ic_launcher"
+    tools:ignore="ContentDescription" />
+
+  <LinearLayout
+    a:layout_width="wrap_content"
+    a:layout_height="match_parent"
+    a:orientation="vertical">
+
+    <TextView
+      a:id="@+id/notif_title"
+      a:layout_width="wrap_content"
+      a:layout_height="wrap_content"
+      a:textAppearance="@android:style/TextAppearance.DeviceDefault"
+      a:textStyle="bold"
+      tools:targetApi="ice_cream_sandwich" />
+
+    <TextView
+      a:layout_width="wrap_content"
+      a:layout_height="wrap_content"
+      a:text="tap to close"
+      a:textAppearance="@android:style/TextAppearance.DeviceDefault"
+      tools:targetApi="ice_cream_sandwich"
+      tools:ignore="HardcodedText" />
+  </LinearLayout>
+</LinearLayout>
