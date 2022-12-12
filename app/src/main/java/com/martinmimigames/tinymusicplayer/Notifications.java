@@ -65,7 +65,7 @@ public class Notifications {
     final String title = new File(uri.getPath()).getName();
     notification = NotificationHelper.createNotification(service, NOTIFICATION_CHANNEL, (Build.VERSION.SDK_INT > 21) ? android.app.Notification.CATEGORY_SERVICE : null);
     notification.icon = R.drawable.ic_notif; // icon display
-    //notification.largeIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.ic); // large icon display
+    //notification.largeIcon = BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_launcher); // large icon display
     notification.defaults = Notification.DEFAULT_ALL; // set defaults
     notification.when = System.currentTimeMillis(); // set time of notification
     notification.tickerText = title;// set popup text
