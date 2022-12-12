@@ -11,7 +11,7 @@
     a:layout_width="wrap_content"
     a:layout_height="match_parent"
     a:padding="10dp"
-    a:src="@drawable/ic"
+    a:src="@drawable/ic_launcher"
     tools:ignore="ContentDescription" />
 
   <LinearLayout
