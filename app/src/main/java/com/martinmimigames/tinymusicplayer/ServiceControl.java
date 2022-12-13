@@ -29,7 +29,9 @@ public class ServiceControl extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    if (Intent.ACTION_MAIN.equals(getIntent().getAction()) && getIntent().hasCategory(Intent.CATEGORY_LAUNCHER)) {
+    if (getIntent().getByteExtra(ServiceControl.SELF_IDENTIFIER, ServiceControl.NULL) != ServiceControl.SELF_IDENTIFIER_ID
+      && !Intent.ACTION_VIEW.equals(getIntent().getAction())
+      && !Intent.ACTION_SEND.equals(getIntent().getAction())) {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
         this.getPackageManager()
           .checkPermission(
