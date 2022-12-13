@@ -82,6 +82,7 @@ public class ServiceControl extends Activity {
       /* redirect to service */
       intent.setAction(Intent.ACTION_VIEW);
       onIntent(intent);
+      return;
     }
     finish();
   }
