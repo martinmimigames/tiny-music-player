@@ -76,14 +76,20 @@ public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListene
    * Switch to play state
    */
   public void play() {
-    mediaPlayer.start();
+    if (mediaPlayer != null)
+      mediaPlayer.start();
+    else
+      interrupt();
   }
 
   /**
    * Switch to pause state
    */
   public void pause() {
-    mediaPlayer.pause();
+    if (mediaPlayer != null)
+      mediaPlayer.pause();
+    else
+      interrupt();
   }
 
   /**
@@ -107,7 +113,8 @@ public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListene
    */
   @Override
   public void interrupt() {
-    mediaPlayer.release();
+    if (mediaPlayer != null)
+      mediaPlayer.release();
     super.interrupt();
   }
 
