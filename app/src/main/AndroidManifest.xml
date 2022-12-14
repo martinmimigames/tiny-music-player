@@ -2,8 +2,8 @@
 <manifest xmlns:a="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   package="com.martinmimigames.tinymusicplayer"
-  a:versionCode="1"
-  a:versionName="1.0">
+  a:versionCode="2"
+  a:versionName="1.1">
 
   <uses-permission a:name="android.permission.POST_NOTIFICATIONS" />
   <uses-permission a:name="android.permission.FOREGROUND_SERVICE" />

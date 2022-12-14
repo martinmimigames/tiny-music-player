@@ -1,0 +1,3 @@
+- fixed double opening file explorer
+- changed logo icon
+- reduced app size
