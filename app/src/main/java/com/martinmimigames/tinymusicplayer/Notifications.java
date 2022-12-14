@@ -56,6 +56,13 @@ public class Notifications {
     update();
   }
 
+  /**
+   * Generate pending intents for service control
+   *
+   * @param id     the id for the intent
+   * @param action the control action
+   * @return the pending intent generated
+   */
   PendingIntent genIntent(int id, byte action) {
     /* flags for control logics on notification */
     int pendingIntentFlag = PendingIntent.FLAG_IMMUTABLE;
