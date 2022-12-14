@@ -44,6 +44,7 @@ public class SessionBroadcastControl extends BroadcastReceiver {
   void create() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       mediaSession = new MediaSession(service, SessionBroadcastControl.class.toString());
+
       mediaSession.setCallback(new MediaSession.Callback() {
         @Override
         public boolean onMediaButtonEvent(Intent mediaButtonIntent) {
@@ -51,9 +52,11 @@ public class SessionBroadcastControl extends BroadcastReceiver {
           return super.onMediaButtonEvent(mediaButtonIntent);
         }
       });
+
       playbackStateBuilder = new PlaybackState.Builder();
       playbackStateBuilder.setActions(PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PAUSE | PlaybackState.ACTION_PLAY_PAUSE);
       mediaSession.setPlaybackState(playbackStateBuilder.build());
+
       mediaSession.setActive(true);
     } else {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {

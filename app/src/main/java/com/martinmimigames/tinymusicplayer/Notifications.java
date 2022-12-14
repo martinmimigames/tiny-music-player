@@ -59,13 +59,13 @@ public class Notifications {
   PendingIntent genIntent(int id, byte action) {
     /* flags for control logics on notification */
     int pendingIntentFlag = PendingIntent.FLAG_IMMUTABLE;
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE)
       pendingIntentFlag |= PendingIntent.FLAG_UPDATE_CURRENT;
-    }
+
     int intentFlag = Intent.FLAG_ACTIVITY_NO_HISTORY;
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR)
       intentFlag |= Intent.FLAG_ACTIVITY_NO_ANIMATION;
-    }
+
     return PendingIntent
       .getService(service, id, new Intent(service, Service.class)
           .addFlags(intentFlag)
