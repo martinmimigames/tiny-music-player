@@ -80,7 +80,7 @@ public class ServiceControl extends Activity {
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     /* if result unusable, discard */
-    if (requestCode == REQUEST_CODE || resultCode == Activity.RESULT_OK) {
+    if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
       /* redirect to service */
       intent.setAction(Intent.ACTION_VIEW);
       onIntent(intent);
