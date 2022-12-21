@@ -12,7 +12,7 @@ import java.io.File;
 
 import mg.utils.notify.NotificationHelper;
 
-public class Notifications {
+class Notifications {
 
   /**
    * notification channel id
@@ -34,9 +34,9 @@ public class Notifications {
 
   public void create() {
     /* create a notification channel */
-    final CharSequence name = "playback control";
-    final String description = "Allows for control over audio playback.";
-    final int importance = (Build.VERSION.SDK_INT > 24) ? NotificationManager.IMPORTANCE_LOW : 0;
+    var name = "playback control";
+    var description = "Allows for control over audio playback.";
+    var importance = (Build.VERSION.SDK_INT > 24) ? NotificationManager.IMPORTANCE_LOW : 0;
     NotificationHelper.setupNotificationChannel(service, NOTIFICATION_CHANNEL, name, description, importance);
   }
 
@@ -65,11 +65,11 @@ public class Notifications {
    */
   PendingIntent genIntent(int id, byte action) {
     /* flags for control logics on notification */
-    int pendingIntentFlag = PendingIntent.FLAG_IMMUTABLE;
+    var pendingIntentFlag = PendingIntent.FLAG_IMMUTABLE;
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE)
       pendingIntentFlag |= PendingIntent.FLAG_UPDATE_CURRENT;
 
-    int intentFlag = Intent.FLAG_ACTIVITY_NO_HISTORY;
+    var intentFlag = Intent.FLAG_ACTIVITY_NO_HISTORY;
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR)
       intentFlag |= Intent.FLAG_ACTIVITY_NO_ANIMATION;
 
@@ -87,7 +87,7 @@ public class Notifications {
   void getNotification(final Uri uri) {
 
     /* setup notification variable */
-    final String title = new File(uri.getPath()).getName();
+    var title = new File(uri.getPath()).getName();
 
     notification = NotificationHelper.createNotification(service, NOTIFICATION_CHANNEL, (Build.VERSION.SDK_INT > 21) ? android.app.Notification.CATEGORY_SERVICE : null);
 
@@ -101,7 +101,7 @@ public class Notifications {
 
 
     /* calls for control logic by starting activity with flags */
-    final PendingIntent killIntent = genIntent(1, ServiceControl.KILL);
+    var killIntent = genIntent(1, ServiceControl.KILL);
 
     /* extra variables for notification setup */
     /* different depending on sdk version as they require different logic */

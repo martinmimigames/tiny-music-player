@@ -8,7 +8,7 @@ import android.os.Build;
 
 import java.io.IOException;
 
-public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
+class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
 
   private final Service service;
   private final MediaPlayer mediaPlayer;

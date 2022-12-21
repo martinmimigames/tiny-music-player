@@ -14,14 +14,14 @@ import android.provider.Settings;
 public class ServiceControl extends Activity {
 
 
-  public static final String TYPE = "type";
-  public static final byte NULL = 0;
-  public static final byte PLAY_PAUSE = 1;
-  public static final byte KILL = 2;
-  public static final byte PLAY = 3;
-  public static final byte PAUSE = 4;
-  public static final byte SELF_IDENTIFIER_ID = 42;
-  public static final String SELF_IDENTIFIER = Service.class.toString();
+  static final String TYPE = "type";
+  static final byte NULL = 0;
+  static final byte PLAY_PAUSE = 1;
+  static final byte KILL = 2;
+  static final byte PLAY = 3;
+  static final byte PAUSE = 4;
+  static final byte SELF_IDENTIFIER_ID = 42;
+  static final String SELF_IDENTIFIER = Service.class.toString();
 
   private static final int REQUEST_CODE = 3216487;
 
@@ -37,7 +37,7 @@ public class ServiceControl extends Activity {
           .checkPermission(
             Manifest.permission.POST_NOTIFICATIONS, this.getPackageName())
           != PackageManager.PERMISSION_GRANTED) {
-        final Intent intent = new Intent();
+        final var intent = new Intent();
         intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
         intent.putExtra(Settings.EXTRA_APP_PACKAGE, this.getPackageName());
         this.startActivity(intent);
@@ -46,9 +46,9 @@ public class ServiceControl extends Activity {
       }
 
       /* request a file from the system */
-      final Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-      fileIntent.setType("audio/*"); // intent type to filter application based on your requirement
-      startActivityForResult(fileIntent, REQUEST_CODE);
+      var intent = new Intent(Intent.ACTION_GET_CONTENT);
+      intent.setType("audio/*"); // intent type to filter application based on your requirement
+      startActivityForResult(intent, REQUEST_CODE);
       return;
     }
     onIntent(getIntent());
