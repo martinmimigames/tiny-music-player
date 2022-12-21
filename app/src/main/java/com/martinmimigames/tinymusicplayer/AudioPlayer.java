@@ -13,6 +13,16 @@ class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, Medi
   private final Service service;
   private final MediaPlayer mediaPlayer;
 
+  /**
+   * Initiate an audio player, throws exceptions if failed.
+   *
+   * @param service       the service initialising this.
+   * @param audioLocation the Uri containing the location of the audio.
+   * @throws IllegalArgumentException when the media player need cookies, but we do not supply it.
+   * @throws IllegalStateException    when the media player is not in the correct state.
+   * @throws SecurityException        when the audio file is protected and cannot be played.
+   * @throws IOException              when the audio file cannot be read.
+   */
   public AudioPlayer(Service service, Uri audioLocation) throws IllegalArgumentException, IllegalStateException, SecurityException, IOException {
     this.service = service;
     /* initiate new audio player */
