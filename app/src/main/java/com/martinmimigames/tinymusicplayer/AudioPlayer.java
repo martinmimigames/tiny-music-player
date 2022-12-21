@@ -24,16 +24,16 @@ public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListene
     try {
       mediaPlayer.setDataSource(service, audioLocation);
     } catch (IllegalArgumentException e) {
-      throwError(Exceptions.IllegalArgument);
+      Exceptions.throwError(service, Exceptions.IllegalArgument);
       return;
     } catch (SecurityException e) {
-      throwError(Exceptions.Security);
+      Exceptions.throwError(service, Exceptions.Security);
       return;
     } catch (IllegalStateException e) {
-      throwError(Exceptions.IllegalState);
+      Exceptions.throwError(service, Exceptions.IllegalState);
       return;
     } catch (IOException e) {
-      throwError(Exceptions.IO);
+      Exceptions.throwError(service, Exceptions.IO);
       return;
     }
 
@@ -61,7 +61,7 @@ public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListene
       /* get ready for playback */
       mediaPlayer.prepareAsync();
     } catch (IllegalStateException e) {
-      throwError(Exceptions.IllegalState);
+      Exceptions.throwError(service, Exceptions.IllegalState);
     }
   }
 
@@ -109,19 +109,5 @@ public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListene
   public void interrupt() {
     mediaPlayer.release();
     super.interrupt();
-  }
-
-  /**
-   * create and display error toast to report errors
-   */
-  private void throwError(String msg) {
-    ToastHelper.showShort(service, msg);
-  }
-
-  private static final class Exceptions {
-    static final String IllegalArgument = "Requires cookies, which the app does not support.";
-    static final String IllegalState = "Unusable player state, close app and try again.";
-    static final String IO = "Read error, try again later.";
-    static final String Security = "File location protected, cannot be accessed.";
   }
 }
