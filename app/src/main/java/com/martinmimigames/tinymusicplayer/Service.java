@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 
+import java.io.IOException;
+
 /**
  * service for playing music
  */
@@ -75,9 +77,19 @@ public class Service extends android.app.Service {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR)
       startForeground(nm.NOTIFICATION, nm.notification);
 
-    /* get audio playback logic and start async */
-    audioPlayer = new AudioPlayer(this, audioLocation);
-    audioPlayer.start();
+    try {
+      /* get audio playback logic and start async */
+      audioPlayer = new AudioPlayer(this, audioLocation);
+      audioPlayer.start();
+    } catch (IllegalArgumentException e) {
+      Exceptions.throwError(this, Exceptions.IllegalArgument);
+    } catch (SecurityException e) {
+      Exceptions.throwError(this, Exceptions.Security);
+    } catch (IllegalStateException e) {
+      Exceptions.throwError(this, Exceptions.IllegalState);
+    } catch (IOException e) {
+      Exceptions.throwError(this, Exceptions.IO);
+    }
   }
 
   /**

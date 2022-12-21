@@ -8,34 +8,18 @@ import android.os.Build;
 
 import java.io.IOException;
 
-import mg.utils.notify.ToastHelper;
-
 public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
 
   private final Service service;
   private final MediaPlayer mediaPlayer;
 
-  public AudioPlayer(Service service, Uri audioLocation) {
+  public AudioPlayer(Service service, Uri audioLocation) throws IllegalArgumentException, IllegalStateException, SecurityException, IOException {
     this.service = service;
     /* initiate new audio player */
     mediaPlayer = new MediaPlayer();
 
     /* setup player variables */
-    try {
-      mediaPlayer.setDataSource(service, audioLocation);
-    } catch (IllegalArgumentException e) {
-      Exceptions.throwError(service, Exceptions.IllegalArgument);
-      return;
-    } catch (SecurityException e) {
-      Exceptions.throwError(service, Exceptions.Security);
-      return;
-    } catch (IllegalStateException e) {
-      Exceptions.throwError(service, Exceptions.IllegalState);
-      return;
-    } catch (IOException e) {
-      Exceptions.throwError(service, Exceptions.IO);
-      return;
-    }
+    mediaPlayer.setDataSource(service, audioLocation);
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
       mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
