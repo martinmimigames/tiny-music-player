@@ -50,35 +50,19 @@ public class Service extends android.app.Service {
     /* check if called from self */
     if (intent.getByteExtra(ServiceControl.SELF_IDENTIFIER, ServiceControl.NULL) == ServiceControl.SELF_IDENTIFIER_ID) {
       switch (intent.getByteExtra(ServiceControl.TYPE, ServiceControl.NULL)) {
-
         /* start or pause audio playback */
-        case ServiceControl.PLAY_PAUSE:
-          playPause();
-          return;
-
-        case ServiceControl.PLAY:
-          play();
-          return;
-
-        case ServiceControl.PAUSE:
-          pause();
-          return;
+        case ServiceControl.PLAY_PAUSE -> playPause();
+        case ServiceControl.PLAY -> play();
+        case ServiceControl.PAUSE -> pause();
 
         /* cancel audio playback and kill service */
-        case ServiceControl.KILL:
-          stopSelf();
-          return;
+        case ServiceControl.KILL -> stopSelf();
       }
+      return;
     } else {
       switch (intent.getAction()) {
-        case Intent.ACTION_VIEW:
-          setAudio(intent.getData());
-          break;
-        case Intent.ACTION_SEND:
-          setAudio(intent.getParcelableExtra(Intent.EXTRA_STREAM));
-          break;
-        default:
-          return;
+        case Intent.ACTION_VIEW -> setAudio(intent.getData());
+        case Intent.ACTION_SEND -> setAudio(intent.getParcelableExtra(Intent.EXTRA_STREAM));
       }
     }
   }

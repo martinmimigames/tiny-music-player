@@ -37,7 +37,7 @@ public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListene
       return;
     }
 
-    if (Build.VERSION.SDK_INT < 21) {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
       mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
     } else {
       mediaPlayer.setAudioAttributes(
