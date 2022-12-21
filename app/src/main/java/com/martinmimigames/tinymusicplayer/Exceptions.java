@@ -14,6 +14,6 @@ final class Exceptions {
    * create and display error toast to report errors
    */
   static void throwError(Context context, String msg) {
-    ToastHelper.showShort(context, msg);
+    ToastHelper.showLong(context, msg);
   }
 }
