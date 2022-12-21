@@ -41,8 +41,8 @@ public class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListene
 
   @Override
   public void run() {
+    /* get ready for playback */
     try {
-      /* get ready for playback */
       mediaPlayer.prepareAsync();
     } catch (IllegalStateException e) {
       Exceptions.throwError(service, Exceptions.IllegalState);
