@@ -19,6 +19,12 @@ Location of webpage:
 
 You can find most information about *Tiny Music Player* just below.
 
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.martinmimigames.tinymusicplayer/)
+
+Or get the latest APK from the [Releases Section](https://github.com/martinmimigames/tiny-music-player/releases/latest).
+
 ## Notices
 
 The app will not be able to function properly without notification permissions being granted.
@@ -78,8 +84,6 @@ Please put them into issues
 [here](https://github.com/martinmimigames/tiny-music-player/issues/new).
 
 - - - -
-
-[Get it from GitHub](https://github.com/martinmimigames/tiny-file-explorer/releases/latest)
 
 ### Last update of README
 
