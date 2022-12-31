@@ -4,35 +4,38 @@
   a:id="@+id/layout"
   a:layout_width="match_parent"
   a:layout_height="match_parent"
-  a:orientation="horizontal"
+  a:orientation="vertical"
+  a:padding="7dp"
   a:theme="@android:style/Theme">
 
-  <ImageView
-    a:layout_width="wrap_content"
-    a:layout_height="match_parent"
-    a:padding="10dp"
-    a:src="@drawable/ic_launcher"
-    tools:ignore="ContentDescription" />
-
   <LinearLayout
-    a:layout_width="wrap_content"
-    a:layout_height="match_parent"
-    a:orientation="vertical">
+    a:layout_width="match_parent"
+    a:layout_height="20dp"
+    a:orientation="horizontal">
+
+    <ImageView
+      a:layout_width="20dp"
+      a:layout_height="match_parent"
+      a:src="@drawable/ic_launcher"
+      tools:ignore="ContentDescription" />
 
     <TextView
       a:id="@+id/notif_title"
-      a:layout_width="wrap_content"
-      a:layout_height="wrap_content"
+      a:layout_width="match_parent"
+      a:layout_height="match_parent"
+      a:ellipsize="end"
       a:textAppearance="@android:style/TextAppearance.DeviceDefault"
       a:textStyle="bold"
-      tools:targetApi="ice_cream_sandwich" />
-
-    <TextView
-      a:layout_width="wrap_content"
-      a:layout_height="wrap_content"
-      a:text="tap to close"
-      a:textAppearance="@android:style/TextAppearance.DeviceDefault"
       tools:targetApi="ice_cream_sandwich"
-      tools:ignore="HardcodedText" />
+      a:singleLine="true" />
+
   </LinearLayout>
+
+  <TextView
+    a:layout_width="wrap_content"
+    a:layout_height="wrap_content"
+    a:text="tap to close"
+    a:textAppearance="@android:style/TextAppearance.DeviceDefault"
+    tools:ignore="HardcodedText"
+    tools:targetApi="ice_cream_sandwich" />
 </LinearLayout>
