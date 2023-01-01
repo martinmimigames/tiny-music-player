@@ -7,6 +7,9 @@
 
   <uses-permission a:name="android.permission.POST_NOTIFICATIONS" />
   <uses-permission a:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission
+    a:name="android.permission.READ_EXTERNAL_STORAGE"
+    tools:ignore="ScopedStorage" />
 
   <application
     a:icon="@drawable/ic_launcher"
