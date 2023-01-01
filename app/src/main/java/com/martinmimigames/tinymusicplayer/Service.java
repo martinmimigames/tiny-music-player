@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class Service extends android.app.Service {
 
-  final SessionBroadcastControl sbc;
+  final HWListener sbc;
   final Notifications nm;
   /**
    * audio playing logic class
@@ -21,7 +21,7 @@ public class Service extends android.app.Service {
   private AudioPlayer audioPlayer;
 
   public Service() {
-    sbc = new SessionBroadcastControl(this);
+    sbc = new HWListener(this);
     nm = new Notifications(this);
   }
 
@@ -50,15 +50,15 @@ public class Service extends android.app.Service {
   @Override
   public void onStart(final Intent intent, final int startId) {
     /* check if called from self */
-    if (intent.getByteExtra(ServiceControl.SELF_IDENTIFIER, ServiceControl.NULL) == ServiceControl.SELF_IDENTIFIER_ID) {
-      switch (intent.getByteExtra(ServiceControl.TYPE, ServiceControl.NULL)) {
+    if (intent.getByteExtra(Launcher.SELF_IDENTIFIER, Launcher.NULL) == Launcher.SELF_IDENTIFIER_ID) {
+      switch (intent.getByteExtra(Launcher.TYPE, Launcher.NULL)) {
         /* start or pause audio playback */
-        case ServiceControl.PLAY_PAUSE -> playPause();
-        case ServiceControl.PLAY -> play();
-        case ServiceControl.PAUSE -> pause();
+        case Launcher.PLAY_PAUSE -> playPause();
+        case Launcher.PLAY -> play();
+        case Launcher.PAUSE -> pause();
 
         /* cancel audio playback and kill service */
-        case ServiceControl.KILL -> stopSelf();
+        case Launcher.KILL -> stopSelf();
       }
       return;
     } else {

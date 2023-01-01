@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.widget.RemoteViews;
@@ -17,11 +18,14 @@ class Notifications {
   /**
    * notification channel id
    */
-  public static final String NOTIFICATION_CHANNEL = "Tiny Music Player notifications";
+  public static final String NOTIFICATION_CHANNEL = "nc";
+
+  private static final String TAP_TO_CLOSE = "Tap to close";
+
   /**
    * notification id
    */
-  public final int NOTIFICATION = 1;
+  public static final int NOTIFICATION = 1;
   private final Service service;
   /**
    * notification for playback control
@@ -69,14 +73,12 @@ class Notifications {
     builder.setSmallIcon(R.drawable.ic_notif);
     builder.setContentTitle(title);
     builder.setSound(null);
-    builder.setOnlyAlertOnce(true);
-    builder.setWhen(System.currentTimeMillis());
     builder.setVibrate(null);
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
       builder.setContentIntent(playPauseIntent);
-      builder.addAction(0, "Tap to close", killIntent);
+      builder.addAction(0, TAP_TO_CLOSE, killIntent);
     } else {
-      builder.setContentText("Tap to close");
+      builder.setContentText(TAP_TO_CLOSE);
       builder.setContentIntent(killIntent);
     }
   }
@@ -125,8 +127,8 @@ class Notifications {
     return PendingIntent
       .getService(service, id, new Intent(service, Service.class)
           .addFlags(intentFlag)
-          .putExtra(ServiceControl.TYPE, action)
-          .putExtra(ServiceControl.SELF_IDENTIFIER, ServiceControl.SELF_IDENTIFIER_ID)
+          .putExtra(Launcher.TYPE, action)
+          .putExtra(Launcher.SELF_IDENTIFIER, Launcher.SELF_IDENTIFIER_ID)
         , pendingIntentFlag);
   }
 
@@ -162,13 +164,10 @@ class Notifications {
     if (Build.VERSION.SDK_INT < 11) {
       notification.contentView = new RemoteViews("com.martinmimigames.tinymusicplayer", R.layout.notif);
       notification.icon = R.drawable.ic_notif; // icon display
-      notification.when = System.currentTimeMillis(); // set time of notification
-      notification.tickerText = title;// set popup text // automatically close popup
-      notification.audioStreamType = Notification.STREAM_DEFAULT;
+      notification.audioStreamType = AudioManager.STREAM_MUSIC;
       notification.sound = null;
       notification.contentIntent = killIntent;
       notification.contentView.setTextViewText(R.id.notif_title, title);
-      notification.flags = Notification.FLAG_ONLY_ALERT_ONCE;
       notification.vibrate = null;
     }
   }
@@ -182,8 +181,8 @@ class Notifications {
     var title = new File(uri.getPath()).getName();
 
     /* calls for control logic by starting activity with flags */
-    var killIntent = genIntent(1, ServiceControl.KILL);
-    var playPauseIntent = genIntent(2, ServiceControl.PLAY_PAUSE);
+    var killIntent = genIntent(1, Launcher.KILL);
+    var playPauseIntent = genIntent(2, Launcher.PLAY_PAUSE);
 
     setupNotificationBuilder(title, playPauseIntent, killIntent);
     genNotification();

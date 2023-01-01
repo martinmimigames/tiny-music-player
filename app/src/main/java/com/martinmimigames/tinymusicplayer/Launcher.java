@@ -11,7 +11,7 @@ import android.provider.Settings;
 /**
  * activity for controlling the playback by invoking different logics based on incoming intents
  */
-public class ServiceControl extends Activity {
+public class Launcher extends Activity {
 
 
   static final String TYPE = "type";
@@ -29,7 +29,7 @@ public class ServiceControl extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    if (getIntent().getByteExtra(ServiceControl.SELF_IDENTIFIER, ServiceControl.NULL) != ServiceControl.SELF_IDENTIFIER_ID
+    if (getIntent().getByteExtra(Launcher.SELF_IDENTIFIER, Launcher.NULL) != Launcher.SELF_IDENTIFIER_ID
       && !Intent.ACTION_VIEW.equals(getIntent().getAction())
       && !Intent.ACTION_SEND.equals(getIntent().getAction())) {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&

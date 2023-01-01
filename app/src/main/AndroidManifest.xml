@@ -19,7 +19,7 @@
     tools:targetApi="n">
 
     <receiver
-      a:name=".SessionBroadcastControl"
+      a:name=".HWListener"
       a:exported="true">
       <intent-filter>
         <action a:name="android.intent.action.MEDIA_BUTTON" />
@@ -31,7 +31,7 @@
       a:exported="false" />
 
     <activity
-      a:name=".ServiceControl"
+      a:name=".Launcher"
       a:exported="true"
       a:excludeFromRecents="true">
       <intent-filter>
