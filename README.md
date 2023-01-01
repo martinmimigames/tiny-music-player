@@ -73,6 +73,23 @@ we use the notification permission to provide playback control for audio playing
 We use the read storage permission on older devices to open the audio files. (not required for newer
 devices)
 
+## Latest Versions
+
+- v1.2
+  - fixed not having permission to open audios on older android (read permission)
+  - fixed notification not disappearing when player failed to start
+  - more time to read error message
+  - fixed incorrect results checking for opening files
+  - updated notification looks to blend in more correctly
+  - updated description
+  - reduced app size
+- v1.1
+  - fixed double opening file explorer
+  - changed logo icon
+  - reduced app size
+- v1.0
+  - 1st release
+
 ## Branches
 
 - main: latest source-code

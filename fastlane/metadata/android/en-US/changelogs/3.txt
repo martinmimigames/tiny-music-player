@@ -1,0 +1,7 @@
+- fixed not having permission to open audios on older android (read permission)
+- fixed notification not disappearing when player failed to start
+- more time to read error message
+- fixed incorrect results checking for opening files
+- updated notification looks to blend in more correctly
+- updated description
+- reduced app size
