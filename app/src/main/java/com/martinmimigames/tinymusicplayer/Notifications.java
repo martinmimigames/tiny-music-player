@@ -27,6 +27,7 @@ class Notifications {
    * notification for playback control
    */
   Notification notification;
+  Notification.Builder builder;
 
   public Notifications(Service service) {
     this.service = service;
@@ -38,6 +39,15 @@ class Notifications {
     var description = "Allows for control over audio playback.";
     var importance = (Build.VERSION.SDK_INT > 24) ? NotificationManager.IMPORTANCE_LOW : 0;
     NotificationHelper.setupNotificationChannel(service, NOTIFICATION_CHANNEL, name, description, importance);
+  }
+
+  void setupNotificationBuilder() {
+    if (Build.VERSION.SDK_INT >= 26) {
+      builder = new Notification.Builder(service, NOTIFICATION_CHANNEL)
+        .setCategory(Notification.CATEGORY_SERVICE);
+    } else if (Build.VERSION.SDK_INT >= 11) {
+      builder = new Notification.Builder(service);
+    }
   }
 
   /**
@@ -89,8 +99,15 @@ class Notifications {
     /* setup notification variable */
     var title = new File(uri.getPath()).getName();
 
-    notification = NotificationHelper.createNotification(service, NOTIFICATION_CHANNEL, (Build.VERSION.SDK_INT > 21) ? android.app.Notification.CATEGORY_SERVICE : null);
-
+    //notification = NotificationHelper.createNotification(service, NOTIFICATION_CHANNEL, (Build.VERSION.SDK_INT > 21) ? android.app.Notification.CATEGORY_SERVICE : null);
+    setupNotificationBuilder();
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+      notification = builder.build();
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      notification = builder.getNotification();
+    } else {
+      notification = new Notification();
+    }
     notification.icon = R.drawable.ic_notif; // icon display
     notification.defaults = Notification.DEFAULT_ALL; // set defaults
     notification.when = System.currentTimeMillis(); // set time of notification
@@ -102,6 +119,7 @@ class Notifications {
 
     /* calls for control logic by starting activity with flags */
     var killIntent = genIntent(1, ServiceControl.KILL);
+    var playPauseIntent = genIntent(2, ServiceControl.PLAY_PAUSE);
 
     /* extra variables for notification setup */
     /* different depending on sdk version as they require different logic */
@@ -110,7 +128,7 @@ class Notifications {
       notification.extras.putCharSequence(Notification.EXTRA_TITLE, title);
       notification.extras.putCharSequence(Notification.EXTRA_TEXT, "Tap to stop");
 
-      notification.contentIntent = genIntent(2, ServiceControl.PLAY_PAUSE);
+      notification.contentIntent = playPauseIntent;
 
       notification.actions = new Notification.Action[]{
         new Notification.Action(R.drawable.ic_launcher, "close", killIntent)
