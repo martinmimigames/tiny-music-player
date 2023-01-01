@@ -45,6 +45,13 @@ class Notifications {
     }
   }
 
+  /**
+   * setup notification properties
+   *
+   * @param title           title of notification (title of file)
+   * @param playPauseIntent pending intent for pause/play audio
+   * @param killIntent      pending intent for closing the service
+   */
   void setupNotificationBuilder(String title, PendingIntent playPauseIntent, PendingIntent killIntent) {
     if (Build.VERSION.SDK_INT < 11) return;
 
@@ -123,6 +130,9 @@ class Notifications {
         , pendingIntentFlag);
   }
 
+  /**
+   * generate new notification
+   */
   void genNotification() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
       buildNotification();
@@ -131,6 +141,9 @@ class Notifications {
     }
   }
 
+  /**
+   * build notification from notification builder
+   */
   void buildNotification() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
       notification = builder.build();
@@ -139,6 +152,12 @@ class Notifications {
     }
   }
 
+  /**
+   * setup notification properties
+   *
+   * @param title      title of notification (title of file)
+   * @param killIntent pending intent for closing the service
+   */
   void setupNotification(String title, PendingIntent killIntent) {
     if (Build.VERSION.SDK_INT < 11) {
       notification.contentView = new RemoteViews("com.martinmimigames.tinymusicplayer", R.layout.notif);
