@@ -85,7 +85,7 @@ class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, Medi
    */
   @Override
   public void onPrepared(MediaPlayer mp) {
-    mediaPlayer.start();
+    service.play();
   }
 
   /**
