@@ -20,8 +20,6 @@ public class Launcher extends Activity {
   static final byte KILL = 2;
   static final byte PLAY = 3;
   static final byte PAUSE = 4;
-  static final byte SELF_IDENTIFIER_ID = 42;
-  static final String SELF_IDENTIFIER = Service.class.toString();
 
   private static final int REQUEST_CODE = 3216487;
 
@@ -29,8 +27,7 @@ public class Launcher extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    if (getIntent().getByteExtra(Launcher.SELF_IDENTIFIER, Launcher.NULL) != Launcher.SELF_IDENTIFIER_ID
-      && !Intent.ACTION_VIEW.equals(getIntent().getAction())
+    if (!Intent.ACTION_VIEW.equals(getIntent().getAction())
       && !Intent.ACTION_SEND.equals(getIntent().getAction())) {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
         this.getPackageManager()

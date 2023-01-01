@@ -50,17 +50,15 @@ public class Service extends android.app.Service {
   @Override
   public void onStart(final Intent intent, final int startId) {
     /* check if called from self */
-    if (intent.getByteExtra(Launcher.SELF_IDENTIFIER, Launcher.NULL) == Launcher.SELF_IDENTIFIER_ID) {
+    if (intent.getAction() == null) {
       switch (intent.getByteExtra(Launcher.TYPE, Launcher.NULL)) {
         /* start or pause audio playback */
         case Launcher.PLAY_PAUSE -> playPause();
         case Launcher.PLAY -> play();
         case Launcher.PAUSE -> pause();
-
         /* cancel audio playback and kill service */
         case Launcher.KILL -> stopSelf();
       }
-      return;
     } else {
       switch (intent.getAction()) {
         case Intent.ACTION_VIEW -> setAudio(intent.getData());
@@ -80,7 +78,7 @@ public class Service extends android.app.Service {
 
       /* start service as foreground */
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR)
-        startForeground(nm.NOTIFICATION, nm.notification);
+        startForeground(Notifications.NOTIFICATION, nm.notification);
 
     } catch (IllegalArgumentException e) {
       Exceptions.throwError(this, Exceptions.IllegalArgument);

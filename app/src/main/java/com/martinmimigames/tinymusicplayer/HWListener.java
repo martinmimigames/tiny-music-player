@@ -114,7 +114,6 @@ public class HWListener extends BroadcastReceiver {
     var event = (KeyEvent) intent.getParcelableExtra(EXTRA_KEY_EVENT);
     if (event.getAction() == KeyEvent.ACTION_DOWN) {
       intent = new Intent(context, Service.class);
-      intent.putExtra(Launcher.SELF_IDENTIFIER, Launcher.SELF_IDENTIFIER_ID);
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
       switch (event.getKeyCode()) {
         case KeyEvent.KEYCODE_MEDIA_PLAY:

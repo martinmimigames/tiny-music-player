@@ -128,7 +128,6 @@ class Notifications {
       .getService(service, id, new Intent(service, Service.class)
           .addFlags(intentFlag)
           .putExtra(Launcher.TYPE, action)
-          .putExtra(Launcher.SELF_IDENTIFIER, Launcher.SELF_IDENTIFIER_ID)
         , pendingIntentFlag);
   }
 
