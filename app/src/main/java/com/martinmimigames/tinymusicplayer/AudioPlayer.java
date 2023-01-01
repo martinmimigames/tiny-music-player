@@ -8,7 +8,7 @@ import android.os.Build;
 
 import java.io.IOException;
 
-class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
+class AudioPlayer extends Thread implements MediaPlayer.OnCompletionListener {
 
   private final Service service;
   private final MediaPlayer mediaPlayer;
@@ -45,7 +45,6 @@ class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, Medi
     mediaPlayer.setLooping(false);
 
     /* setup listeners for further logics */
-    mediaPlayer.setOnPreparedListener(this);
     mediaPlayer.setOnCompletionListener(this);
   }
 
@@ -53,9 +52,12 @@ class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, Medi
   public void run() {
     /* get ready for playback */
     try {
-      mediaPlayer.prepareAsync();
+      mediaPlayer.prepare();
+      service.play();
     } catch (IllegalStateException e) {
       Exceptions.throwError(service, Exceptions.IllegalState);
+    } catch (IOException e) {
+      Exceptions.throwError(service, Exceptions.IO);
     }
   }
 
@@ -78,14 +80,6 @@ class AudioPlayer extends Thread implements MediaPlayer.OnPreparedListener, Medi
    */
   public void pause() {
     mediaPlayer.pause();
-  }
-
-  /**
-   * playback when ready
-   */
-  @Override
-  public void onPrepared(MediaPlayer mp) {
-    service.play();
   }
 
   /**
