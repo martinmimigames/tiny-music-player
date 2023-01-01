@@ -14,9 +14,8 @@
   <application
     a:icon="@drawable/ic_launcher"
     a:label="Tiny Music Player"
-    a:resizeableActivity="true"
     a:restoreAnyVersion="true"
-    tools:targetApi="n">
+    tools:targetApi="froyo">
 
     <receiver
       a:name=".HWListener"
@@ -32,8 +31,8 @@
 
     <activity
       a:name=".Launcher"
-      a:exported="true"
-      a:excludeFromRecents="true">
+      a:excludeFromRecents="true"
+      a:exported="true">
       <intent-filter>
         <action a:name="android.intent.action.MAIN" />
         <category a:name="android.intent.category.LAUNCHER" />
