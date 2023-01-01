@@ -34,14 +34,18 @@ class Notifications {
   }
 
   public void create() {
-    /* create a notification channel */
-    var name = "playback control";
-    var description = "Allows for control over audio playback.";
-    var importance = (Build.VERSION.SDK_INT > 24) ? NotificationManager.IMPORTANCE_LOW : 0;
-    NotificationHelper.setupNotificationChannel(service, NOTIFICATION_CHANNEL, name, description, importance);
+    if (Build.VERSION.SDK_INT >= 26) {
+      /* create a notification channel */
+      var name = "playback control";
+      var description = "Allows for control over audio playback.";
+      var importance = NotificationManager.IMPORTANCE_LOW;
+      var notificationChannel = NotificationHelper.setupNotificationChannel(service, NOTIFICATION_CHANNEL, name, description, importance);
+      notificationChannel.setSound(null, null);
+      notificationChannel.setVibrationPattern(null);
+    }
   }
 
-  void setupNotificationBuilder(String title, PendingIntent playPauseIntent) {
+  void setupNotificationBuilder(String title, PendingIntent playPauseIntent, PendingIntent killIntent) {
     if (Build.VERSION.SDK_INT < 11) return;
 
     // create builder instance
@@ -57,27 +61,41 @@ class Notifications {
 
     builder.setSmallIcon(R.drawable.ic_notif);
     builder.setContentTitle(title);
-    builder.setContentText("");
     builder.setSound(null);
     builder.setOnlyAlertOnce(true);
     builder.setWhen(System.currentTimeMillis());
-    builder.setContentIntent(playPauseIntent);
+    builder.setVibrate(null);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+      builder.setContentIntent(playPauseIntent);
+      builder.addAction(0, "Tap to close", killIntent);
+    } else {
+      builder.setContentText("Tap to close");
+      builder.setContentIntent(killIntent);
+    }
   }
 
   /**
    * Switch to pause state
    */
   void pausePlayback() {
-    NotificationHelper.setText(notification, "Tap to start");
-    update();
+    // no notification controls < Jelly bean
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+      builder.setContentText("Tap to start");
+      buildNotification();
+      update();
+    }
   }
 
   /**
    * Switch to play state
    */
   void startPlayback() {
-    NotificationHelper.setText(notification, "Tap to stop");
-    update();
+    // no notification controls < Jelly bean
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+      builder.setContentText("Tap to stop");
+      buildNotification();
+      update();
+    }
   }
 
   /**
@@ -106,12 +124,18 @@ class Notifications {
   }
 
   void genNotification() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      buildNotification();
+    } else {
+      notification = new Notification();
+    }
+  }
+
+  void buildNotification() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
       notification = builder.build();
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
       notification = builder.getNotification();
-    } else {
-      notification = new Notification();
     }
   }
 
@@ -119,19 +143,14 @@ class Notifications {
     if (Build.VERSION.SDK_INT < 11) {
       notification.contentView = new RemoteViews("com.martinmimigames.tinymusicplayer", R.layout.notif);
       notification.icon = R.drawable.ic_notif; // icon display
-      notification.defaults = Notification.DEFAULT_ALL; // set defaults
       notification.when = System.currentTimeMillis(); // set time of notification
-      notification.tickerText = title;// set popup text
-      notification.flags = Notification.FLAG_AUTO_CANCEL; // automatically close popup
+      notification.tickerText = title;// set popup text // automatically close popup
       notification.audioStreamType = Notification.STREAM_DEFAULT;
       notification.sound = null;
       notification.contentIntent = killIntent;
       notification.contentView.setTextViewText(R.id.notif_title, title);
-      notification.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      notification.actions = new Notification.Action[]{
-        new Notification.Action(R.drawable.ic_launcher, "close", killIntent)
-      };
+      notification.flags = Notification.FLAG_ONLY_ALERT_ONCE;
+      notification.vibrate = null;
     }
   }
 
@@ -147,32 +166,11 @@ class Notifications {
     var killIntent = genIntent(1, ServiceControl.KILL);
     var playPauseIntent = genIntent(2, ServiceControl.PLAY_PAUSE);
 
-    setupNotificationBuilder(title, playPauseIntent);
+    setupNotificationBuilder(title, playPauseIntent, killIntent);
     genNotification();
     setupNotification(title, killIntent);
 
-    /* extra variables for notification setup */
-    /* different depending on sdk version as they require different logic */
-    /*if (Build.VERSION.SDK_INT >= 19) {
-
-      notification.extras.putCharSequence(Notification.EXTRA_TITLE, title);
-      notification.extras.putCharSequence(Notification.EXTRA_TEXT, "Tap to stop");
-
-      notification.contentIntent = playPauseIntent;
-
-      notification.actions = new Notification.Action[]{
-        new Notification.Action(R.drawable.ic_launcher, "close", killIntent)
-      };
-    } else {
-      notification.contentView = new RemoteViews("com.martinmimigames.tinymusicplayer", R.layout.notif);
-      NotificationHelper.setText(notification, R.id.notif_title, title);
-      notification.contentIntent = killIntent;
-    }*/
-
-    /* set to not notify again when update */
-    //notification.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
     update();
-
   }
 
   /**
