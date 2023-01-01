@@ -41,13 +41,27 @@ class Notifications {
     NotificationHelper.setupNotificationChannel(service, NOTIFICATION_CHANNEL, name, description, importance);
   }
 
-  void setupNotificationBuilder() {
+  void setupNotificationBuilder(String title, PendingIntent playPauseIntent) {
+    if (Build.VERSION.SDK_INT < 11) return;
+
+    // create builder instance
     if (Build.VERSION.SDK_INT >= 26) {
-      builder = new Notification.Builder(service, NOTIFICATION_CHANNEL)
-        .setCategory(Notification.CATEGORY_SERVICE);
-    } else if (Build.VERSION.SDK_INT >= 11) {
+      builder = new Notification.Builder(service, NOTIFICATION_CHANNEL);
+    } else {
       builder = new Notification.Builder(service);
     }
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      builder.setCategory(Notification.CATEGORY_SERVICE);
+    }
+
+    builder.setSmallIcon(R.drawable.ic_notif);
+    builder.setContentTitle(title);
+    builder.setContentText("");
+    builder.setSound(null);
+    builder.setOnlyAlertOnce(true);
+    builder.setWhen(System.currentTimeMillis());
+    builder.setContentIntent(playPauseIntent);
   }
 
   /**
@@ -91,6 +105,36 @@ class Notifications {
         , pendingIntentFlag);
   }
 
+  void genNotification() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+      notification = builder.build();
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      notification = builder.getNotification();
+    } else {
+      notification = new Notification();
+    }
+  }
+
+  void setupNotification(String title, PendingIntent killIntent) {
+    if (Build.VERSION.SDK_INT < 11) {
+      notification.contentView = new RemoteViews("com.martinmimigames.tinymusicplayer", R.layout.notif);
+      notification.icon = R.drawable.ic_notif; // icon display
+      notification.defaults = Notification.DEFAULT_ALL; // set defaults
+      notification.when = System.currentTimeMillis(); // set time of notification
+      notification.tickerText = title;// set popup text
+      notification.flags = Notification.FLAG_AUTO_CANCEL; // automatically close popup
+      notification.audioStreamType = Notification.STREAM_DEFAULT;
+      notification.sound = null;
+      notification.contentIntent = killIntent;
+      notification.contentView.setTextViewText(R.id.notif_title, title);
+      notification.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      notification.actions = new Notification.Action[]{
+        new Notification.Action(R.drawable.ic_launcher, "close", killIntent)
+      };
+    }
+  }
+
   /**
    * create and start playback control notification
    */
@@ -99,31 +143,17 @@ class Notifications {
     /* setup notification variable */
     var title = new File(uri.getPath()).getName();
 
-    //notification = NotificationHelper.createNotification(service, NOTIFICATION_CHANNEL, (Build.VERSION.SDK_INT > 21) ? android.app.Notification.CATEGORY_SERVICE : null);
-    setupNotificationBuilder();
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      notification = builder.build();
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-      notification = builder.getNotification();
-    } else {
-      notification = new Notification();
-    }
-    notification.icon = R.drawable.ic_notif; // icon display
-    notification.defaults = Notification.DEFAULT_ALL; // set defaults
-    notification.when = System.currentTimeMillis(); // set time of notification
-    notification.tickerText = title;// set popup text
-    notification.flags = Notification.FLAG_AUTO_CANCEL; // automatically close popup
-    notification.audioStreamType = Notification.STREAM_DEFAULT;
-    notification.sound = null;
-
-
     /* calls for control logic by starting activity with flags */
     var killIntent = genIntent(1, ServiceControl.KILL);
     var playPauseIntent = genIntent(2, ServiceControl.PLAY_PAUSE);
 
+    setupNotificationBuilder(title, playPauseIntent);
+    genNotification();
+    setupNotification(title, killIntent);
+
     /* extra variables for notification setup */
     /* different depending on sdk version as they require different logic */
-    if (Build.VERSION.SDK_INT >= 19) {
+    /*if (Build.VERSION.SDK_INT >= 19) {
 
       notification.extras.putCharSequence(Notification.EXTRA_TITLE, title);
       notification.extras.putCharSequence(Notification.EXTRA_TEXT, "Tap to stop");
@@ -137,10 +167,10 @@ class Notifications {
       notification.contentView = new RemoteViews("com.martinmimigames.tinymusicplayer", R.layout.notif);
       NotificationHelper.setText(notification, R.id.notif_title, title);
       notification.contentIntent = killIntent;
-    }
+    }*/
 
     /* set to not notify again when update */
-    notification.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
+    //notification.flags |= Notification.FLAG_ONLY_ALERT_ONCE;
     update();
 
   }
