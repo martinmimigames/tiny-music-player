@@ -69,6 +69,7 @@ For Android 13+, due to new notification restrictions, the app will bring you to
 If you worry about size, compatibility or privacy, this is the best app for you!
 
 We use the foreground service permission to provide audio playing while using other apps.
+we use the notification permission to provide playback control for audio playing.
 We use the read storage permission on older devices to open the audio files. (not required for newer
 devices)
 

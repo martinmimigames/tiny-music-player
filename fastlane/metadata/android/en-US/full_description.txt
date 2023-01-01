@@ -31,7 +31,7 @@ Features
   Even in the modern world, there is always something seeming to fail. Luckily for you, this app was designed to work just like it is supposed to. It supports all audio types that your device supports.
 
 - Minimal permissions required
-  Have you ever met an app asking for a bunch of unrelated permissions? Have you ever had some strange requests reminding you of a malware? **Not this app!** The only 2 required permissions are foreground service and read storage permission, so you know it's safe to use.
+  Have you ever met an app asking for a bunch of unrelated permissions? Have you ever had some strange requests reminding you of a malware? **Not this app!** The only 3 required permissions are notification, foreground service and read storage permission, so you know it's safe to use.
 
 - No hidden third-parties
   It is completely open-source, and uses as little third-party libraries as possible.
@@ -39,6 +39,7 @@ Features
 If you worry about size, compatibility or privacy, this is the best app for you!
 
 We use the foreground service permission to provide audio playing while using other apps.
+we use the notification permission to provide playback control for audio playing.
 We use the read storage permission on older devices to open the audio files. (not required for newer devices)
 
 Issues and pull requests are always welcome!
