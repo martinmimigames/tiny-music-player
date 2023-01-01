@@ -70,17 +70,18 @@ public class Service extends android.app.Service {
   }
 
   void setAudio(final Uri audioLocation) {
-    /* create notification for playback control */
-    nm.getNotification(audioLocation);
-
-    /* start service as foreground */
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR)
-      startForeground(nm.NOTIFICATION, nm.notification);
-
     try {
       /* get audio playback logic and start async */
       audioPlayer = new AudioPlayer(this, audioLocation);
       audioPlayer.start();
+
+      /* create notification for playback control */
+      nm.getNotification(audioLocation);
+
+      /* start service as foreground */
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR)
+        startForeground(nm.NOTIFICATION, nm.notification);
+
     } catch (IllegalArgumentException e) {
       Exceptions.throwError(this, Exceptions.IllegalArgument);
     } catch (SecurityException e) {
