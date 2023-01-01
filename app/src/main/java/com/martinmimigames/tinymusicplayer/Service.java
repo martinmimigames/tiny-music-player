@@ -13,16 +13,16 @@ import java.io.IOException;
  */
 public class Service extends android.app.Service {
 
-  final HWListener sbc;
-  final Notifications nm;
+  final HWListener hwListener;
+  final Notifications notifications;
   /**
    * audio playing logic class
    */
   private AudioPlayer audioPlayer;
 
   public Service() {
-    sbc = new HWListener(this);
-    nm = new Notifications(this);
+    hwListener = new HWListener(this);
+    notifications = new Notifications(this);
   }
 
   /**
@@ -38,8 +38,8 @@ public class Service extends android.app.Service {
    */
   @Override
   public void onCreate() {
-    sbc.create();
-    nm.create();
+    hwListener.create();
+    notifications.create();
 
     super.onCreate();
   }
@@ -74,11 +74,11 @@ public class Service extends android.app.Service {
       audioPlayer.start();
 
       /* create notification for playback control */
-      nm.getNotification(audioLocation);
+      notifications.getNotification(audioLocation);
 
       /* start service as foreground */
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR)
-        startForeground(Notifications.NOTIFICATION, nm.notification);
+        startForeground(Notifications.NOTIFICATION, notifications.notification);
 
     } catch (IllegalArgumentException e) {
       Exceptions.throwError(this, Exceptions.IllegalArgument);
@@ -106,8 +106,8 @@ public class Service extends android.app.Service {
    */
   void play() {
     audioPlayer.play();
-    sbc.play();
-    nm.startPlayback();
+    hwListener.play();
+    notifications.startPlayback();
   }
 
   /**
@@ -115,8 +115,8 @@ public class Service extends android.app.Service {
    */
   void pause() {
     audioPlayer.pause();
-    sbc.pause();
-    nm.pausePlayback();
+    hwListener.pause();
+    notifications.pausePlayback();
   }
 
   /**
@@ -134,8 +134,8 @@ public class Service extends android.app.Service {
    */
   @Override
   public void onDestroy() {
-    nm.destroy();
-    sbc.destroy();
+    notifications.destroy();
+    hwListener.destroy();
     /* interrupt audio playback logic */
     if (!audioPlayer.isInterrupted()) audioPlayer.interrupt();
 
