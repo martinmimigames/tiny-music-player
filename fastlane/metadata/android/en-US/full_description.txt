@@ -1,4 +1,7 @@
 This project is a light-weight, simple, yet compatible notification based audio player.
+
+Supports Android 1.0+
+
 It allows you to play audio and video files, like how you expected to. Most importantly it is designed in hope to make it compatible with different Android versions.
 Its usage is as easy as opening or sharing the file you want to play with the app, or selecting it directly from the app. Enjoy your music!
 This project is a branch from Little Music Player, but intended to be as small as possible, with only basic function.
@@ -45,7 +48,7 @@ We use the read storage permission on older devices to open the audio files. (no
 Issues and pull requests are always welcome!
 
 Last update of Description:
-- 09-01-2023 dd-mm-yyyy
+- 27-01-2023 dd-mm-yyyy
 
 Important:
 - Please read the license!

@@ -10,7 +10,7 @@ This project is a light-weight, simple, yet compatible notification-based audio 
 Supports Android 1.0+
 
 It allows you to play audio and video files, like how you expected to. Most importantly it is
-designed in hope to make it compatibile with different Android versions.
+designed in hope to make it compatible with different Android versions.
 
 Its usage is as easy as opening or sharing the file you want to play with the app, or selecting it
 directly from the app. Enjoy your music!
@@ -74,7 +74,9 @@ For Android 13+, due to new notification restrictions, the app will bring you to
 If you worry about size, compatibility or privacy, this is the best app for you!
 
 We use the foreground service permission to provide audio playing while using other apps.
+
 we use the notification permission to provide playback control for audio playing.
+
 We use the read storage permission on older devices to open the audio files. (not required for newer
 devices)
 
@@ -110,7 +112,7 @@ Please put them into issues
 
 ### Last update of README
 
-Date : 1-1-2023 dd-mm-yyyy
+Date : 27-01-2023 dd-mm-yyyy
 
 ### Important
 
