@@ -1,1 +1,1 @@
-Notification based, mini, plays audio, and supports Android 1.0+
+Android 1.0+ minimal (<20kb) notification based audio player
