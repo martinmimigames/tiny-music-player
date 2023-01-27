@@ -7,11 +7,16 @@ alt="Read license">](https://github.com/martinmimigames/tiny-music-player/blob/m
 
 This project is a light-weight, simple, yet compatible notification-based audio player.
 
-It allows you to play audio and video files, like how you expected to. Most importantly it is designed in hope to make it compatibile with different Android versions.
+Supports Android 1.0+
 
-Its usage is as easy as opening or sharing the file you want to play with the app, or selecting it directly from the app. Enjoy your music!
+It allows you to play audio and video files, like how you expected to. Most importantly it is
+designed in hope to make it compatibile with different Android versions.
 
-This music player is a branch from [Little Music Player](https://github.com/martinmimigames/little-music-player),
+Its usage is as easy as opening or sharing the file you want to play with the app, or selecting it
+directly from the app. Enjoy your music!
+
+This music player is a branch
+from [Little Music Player](https://github.com/martinmimigames/little-music-player),
 but intended to be as small as possible, with only basic functions.
 
 Location of webpage:
