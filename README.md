@@ -15,20 +15,17 @@ designed in hope to make it compatible with different Android versions.
 Its usage is as easy as opening or sharing the file you want to play with the app, or selecting it
 directly from the app. Enjoy your music!
 
-This music player is a branch
-from [Little Music Player](https://github.com/martinmimigames/little-music-player),
-but intended to be as small as possible, with only basic functions.
-
 Location of webpage:
 [https://martinmimigames.github.io/projects/tiny-music-player](https://martinmimigames.github.io/projects/tiny-music-player)
 
 You can find most information about *Tiny Music Player* just below.
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-     alt="Get it on F-Droid"
-     height="80">](https://f-droid.org/packages/com.martinmimigames.tinymusicplayer/)
 
-Or get the latest APK from the [Releases Section](https://github.com/martinmimigames/tiny-music-player/releases/latest).
+## Different variations
+
+- [Little Music Player](https://github.com/martinmimigames/little-music-player)
+
+  Small, compatible, notification-based music player with more functions.
 
 ## Notices
 
@@ -80,6 +77,18 @@ we use the notification permission to provide playback control for audio playing
 We use the read storage permission on older devices to open the audio files. (not required for newer
 devices)
 
+## Branches
+
+- main: latest source-code
+
+## Issues
+
+Issues and pull requests are always welcome!
+
+You can submit issues the following ways:
+- via [Github Issues](https://github.com/martinmimigames/tiny-music-player/issues/new).
+- via email: martinmimigames@gmail.com
+
 ## Latest Versions
 
 - v1.2
@@ -96,23 +105,24 @@ devices)
   - reduced app size
 - v1.0
   - 1st release
+  
+ ## Installation
 
-## Branches
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.martinmimigames.tinymusicplayer/)
+     
+[Get it on Github Releases](https://github.com/martinmimigames/tiny-music-player/releases/latest)
 
-- main: latest source-code
+[Get it on the official website](https://martinmimigames.github.io/projects/tiny-music-player)
 
-## Issues
+## Made by Martinmimigames
 
-Issues and pull requests are always welcome!
-
-Please put them into issues
-[here](https://github.com/martinmimigames/tiny-music-player/issues/new).
-
-- - - -
+Official Website at [https://martinmimigames.github.io](https://martinmimigames.github.io)
 
 ### Last update of README
 
-Date : 27-01-2023 dd-mm-yyyy
+Date : 04-02-2023 dd-mm-yyyy
 
 ### Important
 
