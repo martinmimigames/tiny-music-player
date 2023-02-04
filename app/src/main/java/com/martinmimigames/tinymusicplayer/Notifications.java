@@ -1,6 +1,5 @@
 package com.martinmimigames.tinymusicplayer;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -20,13 +19,11 @@ class Notifications {
    * notification channel id
    */
   public static final String NOTIFICATION_CHANNEL = "nc";
-
-  private static final String TAP_TO_CLOSE = "Tap to close";
-
   /**
    * notification id
    */
   public static final int NOTIFICATION = 1;
+  private static final String TAP_TO_CLOSE = "Tap to close";
   private final Service service;
   /**
    * notification for playback control
@@ -41,8 +38,8 @@ class Notifications {
   public void create() {
     if (Build.VERSION.SDK_INT >= 26) {
       /* create a notification channel */
-      var name = "playback control";
-      var description = "Allows for control over audio playback.";
+      var name = "Playback Control";
+      var description = "Notification audio controls";
       var importance = NotificationManager.IMPORTANCE_LOW;
       var notificationChannel = NotificationHelper.setupNotificationChannel(service, NOTIFICATION_CHANNEL, name, description, importance);
       notificationChannel.setSound(null, null);
