@@ -1,1 +1,1 @@
-Android 1.0+ minimal (<20kb) notification based audio player
+Android 1.0+ minimal (<20KB) notification based audio player

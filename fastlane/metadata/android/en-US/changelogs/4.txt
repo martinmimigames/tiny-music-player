@@ -1,0 +1,2 @@
+- Added Loop function (accessible via the notifications)
+- Cleaner Notification Category descriptions
