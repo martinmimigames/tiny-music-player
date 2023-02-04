@@ -81,7 +81,7 @@ public class Service extends android.app.Service {
 
       /* start service as foreground */
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR)
-        startForeground(Notifications.NOTIFICATION, notifications.notification);
+        startForeground(Notifications.NOTIFICATION_ID, notifications.notification);
 
     } catch (IllegalArgumentException e) {
       Exceptions.throwError(this, Exceptions.IllegalArgument);

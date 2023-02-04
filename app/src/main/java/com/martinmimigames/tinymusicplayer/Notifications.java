@@ -22,7 +22,7 @@ class Notifications {
   /**
    * notification id
    */
-  public static final int NOTIFICATION = 1;
+  public static final int NOTIFICATION_ID = 1;
   private static final String TAP_TO_CLOSE = "Tap to close";
   private final Service service;
   /**
@@ -187,11 +187,11 @@ class Notifications {
    * update notification content and place on stack
    */
   private void update() {
-    NotificationHelper.send(service, NOTIFICATION, notification);
+    NotificationHelper.send(service, NOTIFICATION_ID, notification);
   }
 
   void destroy() {
     /* remove notification from stack */
-    NotificationHelper.unsend(service, NOTIFICATION);
+    NotificationHelper.unsend(service, NOTIFICATION_ID);
   }
 }
