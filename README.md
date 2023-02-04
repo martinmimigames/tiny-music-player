@@ -3,7 +3,7 @@
 [<img src="https://img.shields.io/github/license/martinmimigames/tiny-music-player?style=flat-square"
 alt="Read license">](https://github.com/martinmimigames/tiny-music-player/blob/main/LICENSE.md)
 
-## Description
+## Descriptions
 
 This project is a light-weight, simple, yet compatible notification-based audio player.
 
@@ -86,7 +86,7 @@ devices)
 Issues and pull requests are always welcome!
 
 You can submit issues the following ways:
-- via [Github Issues](https://github.com/martinmimigames/tiny-music-player/issues/new).
+- via [Github Issues](https://github.com/martinmimigames/tiny-music-player/issues).
 - via email: martinmimigames@gmail.com
 
 ## Latest Versions
