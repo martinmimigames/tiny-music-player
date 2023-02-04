@@ -21,6 +21,8 @@ public class Launcher extends Activity {
   static final byte PLAY = 3;
   static final byte PAUSE = 4;
 
+  static final byte LOOP = 5;
+
   private static final int REQUEST_CODE = 3216487;
 
   @Override

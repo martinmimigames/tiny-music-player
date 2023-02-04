@@ -71,21 +71,14 @@ public class HWListener extends BroadcastReceiver {
   }
 
   /**
-   * Switch to play state, only useful when SDK_INT >= LOLLIPOP
+   * Switch playback state, only useful when SDK_INT >= LOLLIPOP
    */
-  void play() {
-    if (Build.VERSION.SDK_INT >= 21) {
-      playbackStateBuilder.setState(PlaybackState.STATE_PLAYING, PlaybackState.PLAYBACK_POSITION_UNKNOWN, 1);
-      mediaSession.setPlaybackState(playbackStateBuilder.build());
-    }
-  }
-
-  /**
-   * Switch to play state, only useful when SDK_INT >= LOLLIPOP
-   */
-  void pause() {
-    if (Build.VERSION.SDK_INT >= 21) {
-      playbackStateBuilder.setState(PlaybackState.STATE_PAUSED, PlaybackState.PLAYBACK_POSITION_UNKNOWN, 0);
+  void setState(boolean playing, boolean looping) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      if (playing)
+        playbackStateBuilder.setState(PlaybackState.STATE_PLAYING, PlaybackState.PLAYBACK_POSITION_UNKNOWN, 1);
+      else
+        playbackStateBuilder.setState(PlaybackState.STATE_PAUSED, PlaybackState.PLAYBACK_POSITION_UNKNOWN, 1);
       mediaSession.setPlaybackState(playbackStateBuilder.build());
     }
   }

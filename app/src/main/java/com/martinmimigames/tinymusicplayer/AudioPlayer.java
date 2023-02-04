@@ -53,7 +53,7 @@ class AudioPlayer extends Thread implements MediaPlayer.OnCompletionListener {
     /* get ready for playback */
     try {
       mediaPlayer.prepare();
-      service.play();
+      service.setState(true, false);
     } catch (IllegalStateException e) {
       Exceptions.throwError(service, Exceptions.IllegalState);
     } catch (IOException e) {
@@ -69,17 +69,29 @@ class AudioPlayer extends Thread implements MediaPlayer.OnCompletionListener {
   }
 
   /**
-   * Switch to play state
+   * check if audio is looping, always false on < android cupcake (sdk 3)
    */
-  public void play() {
-    mediaPlayer.start();
+  public boolean isLooping() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+      return mediaPlayer.isLooping();
+    } else {
+      return false;
+    }
   }
 
   /**
-   * Switch to pause state
+   * set player state
+   *
+   * @param playing is audio playing
+   * @param looping is audio looping
    */
-  public void pause() {
-    mediaPlayer.pause();
+  void setState(boolean playing, boolean looping) {
+    if (playing) {
+      mediaPlayer.start();
+    } else {
+      mediaPlayer.pause();
+    }
+    mediaPlayer.setLooping(looping);
   }
 
   /**

@@ -1,5 +1,6 @@
 package com.martinmimigames.tinymusicplayer;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -56,7 +57,7 @@ class Notifications {
    * @param playPauseIntent pending intent for pause/play audio
    * @param killIntent      pending intent for closing the service
    */
-  void setupNotificationBuilder(String title, PendingIntent playPauseIntent, PendingIntent killIntent) {
+  void setupNotificationBuilder(String title, PendingIntent playPauseIntent, PendingIntent killIntent, PendingIntent loopIntent) {
     if (Build.VERSION.SDK_INT < 11) return;
 
     // create builder instance
@@ -76,6 +77,7 @@ class Notifications {
     builder.setVibrate(null);
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
       builder.setContentIntent(playPauseIntent);
+      builder.addAction(0, "loop", loopIntent);
       builder.addAction(0, TAP_TO_CLOSE, killIntent);
     } else {
       builder.setContentText(TAP_TO_CLOSE);
@@ -84,24 +86,17 @@ class Notifications {
   }
 
   /**
-   * Switch to pause state
+   * Switch playback state
    */
-  void pausePlayback() {
+  void setState(boolean playing, boolean looping) {
     // no notification controls < Jelly bean
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      builder.setContentText("Tap to start");
-      buildNotification();
-      update();
-    }
-  }
-
-  /**
-   * Switch to play state
-   */
-  void startPlayback() {
-    // no notification controls < Jelly bean
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      builder.setContentText("Tap to stop");
+      var playbackText = "Tap to ";
+      playbackText += (playing) ? "pause" : "play";
+      if (looping) {
+        playbackText += " | looping";
+      }
+      builder.setContentText(playbackText);
       buildNotification();
       update();
     }
@@ -182,8 +177,9 @@ class Notifications {
     /* calls for control logic by starting activity with flags */
     var killIntent = genIntent(1, Launcher.KILL);
     var playPauseIntent = genIntent(2, Launcher.PLAY_PAUSE);
+    var loopIntent = genIntent(3, Launcher.LOOP);
 
-    setupNotificationBuilder(title, playPauseIntent, killIntent);
+    setupNotificationBuilder(title, playPauseIntent, killIntent, loopIntent);
     genNotification();
     setupNotification(title, killIntent);
 

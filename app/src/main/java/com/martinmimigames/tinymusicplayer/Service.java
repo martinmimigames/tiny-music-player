@@ -51,11 +51,14 @@ public class Service extends android.app.Service {
   public void onStart(final Intent intent, final int startId) {
     /* check if called from self */
     if (intent.getAction() == null) {
+      var isPLaying = audioPlayer.isPlaying();
+      var isLooping = audioPlayer.isLooping();
       switch (intent.getByteExtra(Launcher.TYPE, Launcher.NULL)) {
         /* start or pause audio playback */
-        case Launcher.PLAY_PAUSE -> playPause();
-        case Launcher.PLAY -> play();
-        case Launcher.PAUSE -> pause();
+        case Launcher.PLAY_PAUSE -> setState(!isPLaying, isLooping);
+        case Launcher.PLAY -> setState(true, isLooping);
+        case Launcher.PAUSE -> setState(false, isLooping);
+        case Launcher.LOOP -> setState(isPLaying, !isLooping);
         /* cancel audio playback and kill service */
         case Launcher.KILL -> stopSelf();
       }
@@ -92,31 +95,12 @@ public class Service extends android.app.Service {
   }
 
   /**
-   * Switch to play or pause state, depending on current state
+   * Switch to player component state
    */
-  void playPause() {
-    if (audioPlayer.isPlaying())
-      pause();
-    else
-      play();
-  }
-
-  /**
-   * Switch to play state
-   */
-  void play() {
-    audioPlayer.play();
-    hwListener.play();
-    notifications.startPlayback();
-  }
-
-  /**
-   * Switch to pause state
-   */
-  void pause() {
-    audioPlayer.pause();
-    hwListener.pause();
-    notifications.pausePlayback();
+  void setState(boolean playing, boolean looping) {
+    audioPlayer.setState(playing, looping);
+    hwListener.setState(playing, looping);
+    notifications.setState(playing, looping);
   }
 
   /**
