@@ -91,6 +91,9 @@ You can submit issues the following ways:
 
 ## Latest Versions
 
+- v1.3
+  - Added Loop function (accessible via the notifications)
+  - Cleaner Notification Category descriptions
 - v1.2
   - fixed not having permission to open audios on older android (read permission)
   - fixed notification not disappearing when player failed to start
