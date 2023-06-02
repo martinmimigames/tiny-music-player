@@ -21,7 +21,6 @@ Location of webpage:
 
 You can find most information about *Tiny Music Player* just below.
 
-
 ## Different variations
 
 - [Little Music Player](https://github.com/martinmimigames/little-music-player)
@@ -87,8 +86,9 @@ devices)
 Issues and pull requests are always welcome!
 
 You can submit issues the following ways:
+
 - via [Github Issues](https://github.com/martinmimigames/tiny-music-player/issues).
-- via email: martinmimigames@gmail.com
+- via email: <martinmimigames@gmail.com>
 
 ## Latest Versions
 
@@ -112,11 +112,13 @@ You can submit issues the following ways:
   
  ## Installation
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+[<img src="https://martinmimigames.github.io/res/get-it-on/f-droid.png"
      alt="Get it on F-Droid"
      height="80">](https://f-droid.org/packages/com.martinmimigames.tinymusicplayer/)
-     
-[Get it on Github Releases](https://github.com/martinmimigames/tiny-music-player/releases/latest)
+
+[<img src="https://martinmimigames.github.io/res/get-it-on/github.png"
+     alt="Get it on Github"
+     height="80">](https://github.com/martinmimigames/tiny-music-player/releases/latest)
 
 [Get it on the official website](https://martinmimigames.github.io/projects/tiny-music-player)
 
