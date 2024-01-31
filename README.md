@@ -124,6 +124,14 @@ You can submit issues the following ways:
 
 [Get it on the official website](https://martinmimigames.github.io/projects/tiny-music-player)
 
+## Cloning project
+
+```sh
+git clone https://github.com/martinmimigames/tiny-music-player.git
+cd tiny-music-player
+git submodule init && git submodule update
+```
+
 ## Made by Martinmimigames
 
 Official Website at [https://martinmimigames.github.io](https://martinmimigames.github.io)
