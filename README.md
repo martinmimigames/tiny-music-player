@@ -23,6 +23,19 @@ Location of webpage:
 
 You can find most information about *Tiny Music Player* just below.
 
+ ## Installation
+
+[<img src="https://martinmimigames.github.io/res/get-it-on/f-droid.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.martinmimigames.tinymusicplayer/)
+
+[<img src="https://martinmimigames.github.io/res/get-it-on/github.png"
+     alt="Get it on Github"
+     height="80">](https://github.com/martinmimigames/tiny-music-player/releases/latest)
+
+[Get it on the official website](https://martinmimigames.github.io/projects/tiny-music-player)
+
+
 ## Different variations
 
 - [Little Music Player](https://github.com/martinmimigames/little-music-player)
@@ -112,25 +125,36 @@ You can submit issues the following ways:
 - v1.0
   - 1st release
   
- ## Installation
+## Development
 
-[<img src="https://martinmimigames.github.io/res/get-it-on/f-droid.png"
-     alt="Get it on F-Droid"
-     height="80">](https://f-droid.org/packages/com.martinmimigames.tinymusicplayer/)
-
-[<img src="https://martinmimigames.github.io/res/get-it-on/github.png"
-     alt="Get it on Github"
-     height="80">](https://github.com/martinmimigames/tiny-music-player/releases/latest)
-
-[Get it on the official website](https://martinmimigames.github.io/projects/tiny-music-player)
-
-## Cloning project
+To clone the project, run the following command:
 
 ```sh
+# clone repository
 git clone https://github.com/martinmimigames/tiny-music-player.git
+
+# enter the project directory
 cd tiny-music-player
-git submodule init && git submodule update
+
+# to get mg.util library
+git submodule update --init
 ```
+
+To compile the project, you need the following:
+
+- openjdk-17
+- android sdk
+- `keystore.properties` in the **ROOT FOLDER** of the project
+
+Run the following command to build the project:
+
+```sh
+./gradlew assembleDebug
+```
+
+Alternatively, you can use the GitHub action for compiling the project.
+
+See [Dockerfile](/Dockerfile) for more information.
 
 ## Made by Martinmimigames
 
@@ -138,7 +162,7 @@ Official Website at [https://martinmimigames.github.io](https://martinmimigames.
 
 ### Last update of README
 
-Date : 25-04-2023 dd-mm-yyyy
+Date : 2025-04-09 yyyy-mm-dd
 
 ### Important
 
