@@ -8,42 +8,27 @@ This project is a branch from Little Music Player, but intended to be as small a
 
 You can find most information about Tiny Music Player just below.
 
-Notices
+<b>Notices</b>
 
 The app will not be able to function properly without notification permissions being granted.
 For Android 13+, due to new notification restrictions, the app will bring you to the settings page if the permission is not granted.
 
-Features
+<b>Features</b>
 
-- It's free
-  Everyone should have the right to listen to music, therefore we aim to make it accessible.
-
-- No advertisement
-  We simply want a distraction-free experience for you, so you can relax and enjoy!
-
-- Compact
-  Less than 20 kB in size, one of the tiniest audio player apps on Android! No need to worry about bloated apps again.
-
-- Unbelievably compatible
-  Strangely addicted to support, we believe that nobody should be excluded due to an older device. Therefore we have theoretical support starting all the way back from Android 1.0, and tested support on Android 2.3 and above. Isn't it amazing?
-
-- Clean & Simple
-  No awkward layout, no hidden options and straightforward, so you can focus on the content. Enjoyment is key, right?
-
-- It simply works :)
-  Even in the modern world, there is always something seeming to fail. Luckily for you, this app was designed to work just like it is supposed to. It supports all audio types that your device supports.
-
-- Minimal permissions required
-  Have you ever met an app asking for a bunch of unrelated permissions? Have you ever had some strange requests reminding you of a malware? **Not this app!** The only 3 required permissions are notification, foreground service and read storage permission, so you know it's safe to use.
-
-- No hidden third-parties
-  It is completely open-source, and uses as little third-party libraries as possible.
+- <b>It's free:</b> Everyone should have the right to listen to music, therefore we aim to make it accessible.
+- <b>No advertisement:</b> We simply want a distraction-free experience for you, so you can relax and enjoy!
+- <b>Compact:</b> Less than 20 kB in size, one of the tiniest audio player apps on Android! No need to worry about bloated apps again.
+- <b>Unbelievably compatible:</b> Strangely addicted to support, we believe that nobody should be excluded due to an older device. Therefore we have theoretical support starting all the way back from Android 1.0, and tested support on Android 2.3 and above. Isn't it amazing?
+- <b>Clean & Simple:</b> No awkward layout, no hidden options and straightforward, so you can focus on the content. Enjoyment is key, right?
+- <b>It simply works :)</b> Even in the modern world, there is always something seeming to fail. Luckily for you, this app was designed to work just like it is supposed to. It supports all audio types that your device supports.
+- <b>Minimal permissions required:</b> Have you ever met an app asking for a bunch of unrelated permissions? Have you ever had some strange requests reminding you of a malware? **Not this app!** The only 3 required permissions are notification, foreground service and read storage permission, so you know it's safe to use.
+- <b>No hidden third-parties:</b> It is completely open-source, and uses as little third-party libraries as possible.
 
 If you worry about size, compatibility or privacy, this is the best app for you!
 
-We use the foreground service permission to provide audio playing while using other apps.
-we use the notification permission to provide playback control for audio playing.
-We use the read storage permission on older devices to open the audio files. (not required for newer devices)
+- We use the foreground service permission to provide audio playing while using other apps.
+- we use the notification permission to provide playback control for audio playing.
+- We use the read storage permission on older devices to open the audio files. (not required for newer devices)
 
 Issues and pull requests are always welcome!
 
