@@ -6,6 +6,8 @@
 
 [![Code Quality](https://img.shields.io/codefactor/grade/github/martinmimigames/tiny-music-player/main?style=flat-square)](https://www.codefactor.io/repository/github/martinmimigames/tiny-music-player)
 
+[![Reproducibility Status](https://shields.rbtlog.dev/simple/com.martinmimigames.tinymusicplayer)](https://shields.rbtlog.dev/com.martinmimigames.tinymusicplayer)
+
 ## Descriptions
 
 This project is a light-weight, simple, yet compatible notification-based audio player.
