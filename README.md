@@ -31,6 +31,10 @@ You can find most information about *Tiny Music Player* just below.
      alt="Get it on F-Droid"
      height="80">](https://f-droid.org/packages/com.martinmimigames.tinymusicplayer/)
 
+[<img src="https://martinmimigames.github.io/res/get-it-on/izzyondroid.png"
+     alt="Get it on IzzyOnDroid"
+     height="80">](https://apt.izzysoft.de/packages/com.martinmimigames.tinymusicplayer)
+
 [<img src="https://martinmimigames.github.io/res/get-it-on/github.png"
      alt="Get it on Github"
      height="80">](https://github.com/martinmimigames/tiny-music-player/releases/latest)
